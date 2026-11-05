@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Aurea — óculos de precisão, desenhados para marcar presença." />
+  <title>AUREA — O essencial, elevado</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #17211d;
+      --ink-soft: #59635e;
+      --paper: #bfc0c1;
+      --paper-light: #f5f4f1;
+      --line: rgba(23, 33, 29, .16);
+      --green: #7f9d8a;
+      --green-deep: #294239;
+      --graphite: #1b2521;
+      --graphite-soft: rgba(27, 37, 33, .76);
+      --dark-glass: rgba(21, 32, 29, .9);
+      --ease: cubic-bezier(.22, .8, .25, 1);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; }
+    body { margin: 0; background: linear-gradient(180deg, rgb(184, 182, 184) 0%, rgb(198, 199, 200) 100%); color: var(--ink); font-family: "Cinzel", Georgia, serif; letter-spacing: .025em; }
+    button, a { font: inherit; }
+    a { color: inherit; text-decoration: none; }
+    button { border: 0; }
+
+    .page { width: 100%; height: 100svh; min-height: 520px; overflow: hidden; position: relative; isolation: isolate; background: linear-gradient(180deg, rgb(184, 182, 184) 0%, rgb(198, 199, 200) 100%); }
+    .page::before { content: ""; position: absolute; width: min(72vw, 940px); aspect-ratio: 1; right: -13vw; top: -30vw; border: 1px solid var(--line); border-radius: 50%; z-index: -1; }
+    .page::after { content: ""; position: absolute; width: min(42vw, 560px); aspect-ratio: 1; left: -25vw; bottom: -32vw; border: 1px solid rgba(127,157,138,.28); border-radius: 50%; z-index: -1; }
+
+    .nav { position: absolute; inset: 0 0 auto; width: min(1380px, calc(100% - 72px)); margin: auto; padding: clamp(18px, 3vh, 30px) 0; display: flex; align-items: center; justify-content: space-between; z-index: 10; animation: rise-in .8s .05s var(--ease) both; }
+    .brand { font-size: 1.05rem; font-weight: 700; letter-spacing: .28em; }
+    .brand span { color: var(--green); }
+    .nav-note { position: absolute; left: 50%; transform: translateX(-50%); color: var(--ink-soft); font-size: .58rem; letter-spacing: .21em; text-transform: uppercase; white-space: nowrap; }
+
+    .viewport { width: min(1440px, calc(100% - 72px)); height: 100%; margin: auto; display: grid; grid-template-columns: minmax(118px, 150px) minmax(0, 1fr); gap: clamp(24px, 3vw, 48px); align-items: center; padding: clamp(76px, 12vh, 120px) 0 clamp(30px, 5vh, 58px); }
+    .copy { position: relative; z-index: 4; min-width: 0; width: 100%; max-width: none; height: 100%; overflow: hidden; contain: paint; display: flex; flex-direction: column; justify-content: space-between; padding: 18px 0 18px 15px; color: var(--ink); border-left: 1px solid rgba(23,33,29,.28); animation: rise-in .9s .18s var(--ease) both; }
+    .eyebrow { display: flex; align-items: center; gap: 9px; color: var(--ink-soft); font-size: .53rem; letter-spacing: .2em; line-height: 1.6; }
+    .eyebrow::before { content: ""; width: 30px; height: 1px; background: var(--green); }
+    .copy-rail-mark { color: var(--ink); font-size: clamp(2.4rem, 4.2vw, 4.7rem); font-weight: 500; letter-spacing: -.09em; line-height: .8; }
+    .copy-rail-label { margin-top: 13px; color: var(--ink-soft); font-size: .48rem; letter-spacing: .18em; line-height: 1.7; text-transform: uppercase; writing-mode: vertical-rl; }
+    .copy-meta { display: grid; gap: 8px; color: var(--ink-soft); font-size: .48rem; letter-spacing: .14em; line-height: 1.6; text-transform: uppercase; }
+    .copy-meta span { display: block; padding-top: 8px; border-top: 1px solid rgba(23,33,29,.18); }
+
+    .product-stage { height: 100%; min-width: 0; min-height: 0; position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(196px, 236px); gap: 16px; align-items: center; animation: product-in 1.15s .12s var(--ease) both; }
+    .product-stage::before { content: ""; position: absolute; width: min(54vw, 780px); aspect-ratio: 1; border: 1px solid rgba(23,33,29,.11); border-radius: 50%; transform: translate(3%, 0); }
+    .product-stage::after { content: ""; position: absolute; width: 58%; height: 18%; bottom: 9%; left: 21%; background: rgba(41,66,57,.14); filter: blur(34px); border-radius: 50%; z-index: -1; }
+    .product-frame { width: 100%; min-width: 0; height: min(82vh, 900px); min-height: 380px; position: relative; display: grid; place-items: center; overflow: hidden; border: 1px solid rgba(255,255,255,.46); border-radius: 6px; background: linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.02)); box-shadow: 0 25px 48px rgba(48,65,57,.12), inset 0 1px 0 rgba(255,255,255,.6); backdrop-filter: blur(6px); }
+    .product-frame::before { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, rgba(255,255,255,.32), transparent 35%, transparent 68%, rgba(255,255,255,.18)); transform: translateX(-100%); animation: glass-sweep 8s 1.3s ease-in-out infinite; pointer-events: none; z-index: 2; }
+    .product-image { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; mix-blend-mode: multiply; filter: contrast(1.06) saturate(.88); animation: hover-product 6.5s ease-in-out 1.35s infinite; transition: opacity .3s var(--ease), transform .45s var(--ease), filter .3s; }
+    .product-image.is-changing { opacity: .08; transform: scale(.995); filter: blur(2px); }
+    .frame-tech { position: absolute; left: 22px; right: 22px; display: flex; justify-content: space-between; color: rgba(23,33,29,.52); font-size: .48rem; letter-spacing: .18em; text-transform: uppercase; z-index: 3; pointer-events: none; }
+    .frame-tech--top { top: 18px; }
+    .frame-tech--bottom { bottom: 16px; min-height: 14px; }
+    .frame-label { position: absolute; left: 24px; bottom: 42px; min-height: 18px; display: flex; align-items: center; gap: 9px; color: var(--ink-soft); font-size: .57rem; letter-spacing: .18em; text-transform: uppercase; z-index: 3; }
+    .frame-label, .frame-index { transition: opacity .22s var(--ease), transform .22s var(--ease); }
+    .frame-label.is-updating, .frame-index.is-updating { opacity: .32; transform: translateY(3px); }
+    .frame-label i { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 5px rgba(127,157,138,.16); }
+    .frame-index { position: absolute; right: 24px; bottom: 42px; min-height: 18px; display: flex; align-items: center; color: var(--ink-soft); font-size: .58rem; letter-spacing: .16em; z-index: 3; }
+
+    .controls { position: relative; inset: auto; align-self: center; min-height: min(82vh, 900px); display: flex; flex-direction: column; align-items: stretch; justify-content: center; gap: 0; z-index: 5; padding: 25px 20px; border: 1px solid rgba(255,255,255,.36); border-radius: 6px; background: rgba(20,29,25,.94); color: var(--paper-light); box-shadow: 0 14px 30px rgba(23,33,29,.24); backdrop-filter: blur(18px); animation: rail-in .8s .5s var(--ease) both; }
+    .controls-heading { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 20px; border-bottom: 1px solid rgba(245,244,241,.18); color: var(--paper-light); font-size: 1rem; letter-spacing: .1em; text-transform: uppercase; }
+    .controls-heading span:last-child { color: var(--green); font-size: .45rem; }
+    .control-block { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; min-width: 0; padding: 23px 0; }
+    .control-block + .control-block { padding-left: 0; border-left: 0; border-top: 1px solid rgba(245,244,241,.16); }
+    .control-label { color: #c2d0c7; font-size: .88rem; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; }
+    .swatches, .angles { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+    .swatch { width: 23px; height: 23px; padding: 0; border: 1px solid rgba(255,255,255,.45); border-radius: 50%; cursor: pointer; position: relative; transition: transform .22s, border-color .22s; }
+    .swatch:hover { transform: scale(1.12); }
+    .swatch[aria-pressed="true"] { border-color: var(--green); transform: scale(1.08); box-shadow: 0 0 0 3px rgba(127,157,138,.2); }
+    .swatch[aria-pressed="true"]::after { content: ""; position: absolute; left: 50%; bottom: -8px; width: 12px; height: 1px; background: var(--green); transform: translateX(-50%); }
+    .swatch.black { background: #20201e; } .swatch.white { background: #eeeae1; } .swatch.red { background: #8f3931; } .swatch.green { background: #4d6756; }
+    .angle { padding: 7px 8px; background: transparent; color: rgba(250,248,243,.72); border-bottom: 1px solid transparent; cursor: pointer; font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; transition: color .22s, border-color .22s; }
+    .angle:hover, .angle[aria-pressed="true"] { color: var(--paper-light); border-color: var(--green); }
+    .angle.is-selected { animation: selected-pulse .45s var(--ease); }
+    .swatch.is-selected { animation: selected-pulse .45s var(--ease); }
+    .swatch:focus-visible, .angle:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
+
+
+    @keyframes rise-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes product-in { from { opacity: 0; transform: scale(.94) translateY(18px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    @keyframes rail-in { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes hover-product { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-4px) scale(.995); } }
+    @keyframes glass-sweep { 0%, 35% { transform: translateX(-100%); opacity: 0; } 45% { opacity: 1; } 62%, 100% { transform: translateX(100%); opacity: 0; } }
+    @keyframes selected-pulse { 0% { transform: scale(.97); } 100% { transform: scale(1); } }
+
+    @media (max-width: 850px) {
+      .nav, .viewport { width: min(100% - 40px, 680px); }
+      .viewport { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); gap: 0; padding-top: 82px; padding-bottom: 62px; }
+      .copy { height: auto; min-height: 0; padding: 10px 0 12px 12px; border-left-width: 1px; }
+      .copy-rail-mark { font-size: clamp(2rem, 6vw, 3.2rem); }
+      .copy-rail-label { display: inline-block; margin: 0 0 0 12px; writing-mode: initial; }
+      .copy-meta { display: flex; gap: 14px; margin-top: 8px; }
+      .copy-meta span { padding-top: 0; border-top: 0; font-size: .43rem; }
+      .product-stage { min-height: 0; margin-top: 18px; grid-template-columns: minmax(0, 1fr) minmax(164px, 190px); gap: 10px; }
+      .product-frame { height: min(62vh, 560px); min-height: 250px; border-radius: 6px; }
+      .product-stage::before { width: min(82vw, 540px); }
+      .controls { min-height: min(62vh, 560px); padding: 16px 13px; }
+      .controls-heading { padding-bottom: 14px; font-size: .9rem; }
+      .control-block { gap: 8px; padding: 17px 0; }
+      .control-label { font-size: .76rem; }
+      .angle { padding: 6px 3px; font-size: .7rem; }
+    }
+
+    @media (max-width: 520px) {
+      .page { min-height: 500px; }
+      .nav, .viewport { width: calc(100% - 28px); }
+      .nav-note { display: none; }
+      .viewport { padding-top: 76px; padding-bottom: 70px; }
+      .copy { padding: 4px 0 9px 10px; }
+      .copy-rail-mark { font-size: 2rem; }
+      .copy-rail-label { font-size: .43rem; }
+      .copy-meta { display: none; }
+      .product-stage { grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; gap: 9px; margin-top: 8px; }
+      .product-frame { height: 47vh; min-height: 220px; }
+      .product-image { object-position: center; }
+      .frame-tech { display: none; }
+      .frame-label { left: 12px; bottom: 34px; font-size: .5rem; }
+      .frame-index { right: 12px; bottom: 34px; font-size: .5rem; }
+      .controls { min-height: 0; display: grid; grid-template-columns: 1fr; padding: 8px 11px; }
+      .controls-heading { padding-bottom: 8px; font-size: .82rem; }
+      .control-block { flex-direction: row; align-items: center; gap: 8px; padding: 8px 0; }
+      .control-label { font-size: .7rem; }
+      .angle { font-size: .68rem; }
+      .control-block + .control-block { padding-left: 0; border-left: 0; border-top: 1px solid rgba(245,244,241,.16); }
+      .swatches, .angles { margin-left: auto; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="nav">
+      <a class="brand" href="#top" aria-label="Aurea início">AUREA<span>.</span></a>
+      <span class="nav-note">Coleção 01 · Precisão óptica</span>
+    </header>
+
+    <main class="viewport" id="top">
+      <section class="copy" aria-label="Identidade da coleção Aurea">
+        <div><div class="copy-rail-mark">A/01</div><div class="copy-rail-label">Optical<br />series</div></div>
+        <div class="copy-meta"><span>Precision frame</span><span>2024 / 01</span></div>
+      </section>
+
+      <section class="product-stage" id="product" aria-label="Visualizador interativo do produto">
+        <div class="product-frame">
+          <div class="frame-tech frame-tech--top"><span>OPTICAL SERIES 01</span><span>AUREA / OBJECT 01</span></div>
+          <img class="product-image" id="productImage" src="img/black_three_quarter.png" alt="Óculos Aurea na cor preto, vista três quartos" />
+          <div class="frame-label"><i></i><span id="stageCaption">Preto · três quartos</span></div>
+          <div class="frame-index" id="stageIndex">02 / 03</div>
+          <div class="frame-tech frame-tech--bottom"><span>ENGINEERED FOR PRESENCE</span><span>2024 / 01</span></div>
+        </div>
+        <div class="controls" aria-label="Personalize seu Aurea">
+          <div class="controls-heading"><span>Personalize</span><span>Live / 01</span></div>
+          <div class="control-block"><span class="control-label">Tom</span><div class="swatches" role="group" aria-label="Cores disponíveis"><button class="swatch black" data-color="black" aria-label="Preto" aria-pressed="true"></button><button class="swatch white" data-color="white" aria-label="Branco" aria-pressed="false"></button><button class="swatch red" data-color="red" aria-label="Vermelho" aria-pressed="false"></button><button class="swatch green" data-color="green" aria-label="Verde" aria-pressed="false"></button></div><span class="control-label" id="selectedColor">Preto</span></div>
+          <div class="control-block"><span class="control-label">Vista</span><div class="angles" role="group" aria-label="Ângulos disponíveis"><button class="angle" data-angle="front" aria-pressed="false">Frontal</button><button class="angle is-selected" data-angle="three_quarter" aria-pressed="true">3/4</button><button class="angle" data-angle="side" aria-pressed="false">Lateral</button></div></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    const labels = { black: 'Preto', white: 'Branco', red: 'Vermelho', green: 'Verde' };
+    const angles = {
+      front: { file: 'front', label: 'frontal', index: '01 / 03' },
+      three_quarter: { file: 'three_quarter', label: 'três quartos', index: '02 / 03' },
+      side: { file: 'side', label: 'lateral', index: '03 / 03' }
+    };
+    let selectedColor = 'black';
+    let selectedAngle = 'three_quarter';
+    const productImage = document.querySelector('#productImage');
+    const selectedColorEl = document.querySelector('#selectedColor');
+    const stageCaption = document.querySelector('#stageCaption');
+    const stageIndex = document.querySelector('#stageIndex');
+
+    function imagePath(color, angle) { return `img/${color}_${angle}.png`; }
+
+    function updateProduct() {
+      const view = angles[selectedAngle];
+      productImage.classList.add('is-changing');
+      stageCaption.closest('.frame-label').classList.add('is-updating');
+      stageIndex.classList.add('is-updating');
+      window.setTimeout(() => {
+        productImage.src = imagePath(selectedColor, view.file);
+        productImage.alt = `Óculos Aurea na cor ${labels[selectedColor].toLowerCase()}, vista ${view.label}`;
+        selectedColorEl.textContent = labels[selectedColor];
+        stageCaption.textContent = `${labels[selectedColor]} · ${view.label}`;
+        stageIndex.textContent = view.index;
+        productImage.classList.remove('is-changing');
+        stageCaption.closest('.frame-label').classList.remove('is-updating');
+        stageIndex.classList.remove('is-updating');
+      }, 180);
+    }
+
+    document.querySelectorAll('.swatch').forEach((button) => button.addEventListener('click', () => {
+      selectedColor = button.dataset.color;
+      document.querySelectorAll('.swatch').forEach((item) => { item.setAttribute('aria-pressed', item === button); item.classList.toggle('is-selected', item === button); });
+      updateProduct();
+    }));
+
+    document.querySelectorAll('.angle').forEach((button) => button.addEventListener('click', () => {
+      selectedAngle = button.dataset.angle;
+      document.querySelectorAll('.angle').forEach((item) => { item.setAttribute('aria-pressed', item === button); item.classList.toggle('is-selected', item === button); });
+      updateProduct();
+    }));
+  </script>
+</body>
+</html>
